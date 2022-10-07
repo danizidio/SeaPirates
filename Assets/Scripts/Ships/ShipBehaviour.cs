@@ -18,7 +18,7 @@ public class ShipBehaviour : MonoBehaviour
         _currentLife = _maxLife;
         
         _pieceHull.sprite = _hull[0];
-        _pieceLargeSail.sprite = __largeSail[0];
+        _pieceLargeSail.sprite = _largeSail[0];
         _pieceSmallSail.sprite = _smallSail[0];
     }
     
@@ -31,14 +31,14 @@ public class ShipBehaviour : MonoBehaviour
         if(_percentageLife >= .31f && _percentageLife <= .7f)
         {
             _pieceHull.sprite = _hull[1];
-            _pieceLargeSail.sprite = __largeSail[1];
+            _pieceLargeSail.sprite = _largeSail[1];
             _pieceSmallSail.sprite = _smallSail[1];
         }
         
         if(_percentageLife >= .01f && _percentageLife <= .3f)
         {
             _pieceHull.sprite = _hull[2];
-            _pieceLargeSail.sprite = __largeSail[2];
+            _pieceLargeSail.sprite = _largeSail[2];
             _pieceSmallSail.sprite = _smallSail[2];
         }
         
@@ -47,7 +47,7 @@ public class ShipBehaviour : MonoBehaviour
             _currentLife = 0;
             
             _pieceHull.sprite = _hull[3];
-            _pieceLargeSail.sprite = __largeSail[3];
+            _pieceLargeSail.sprite = _largeSail[3];
             _pieceSmallSail.sprite = _smallSail[3];
         }
     }

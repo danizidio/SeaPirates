@@ -42,8 +42,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Environment
+    uniqueID: 2927215663
+    locked: 0
+  - name: Enemies
+    uniqueID: 3509375025
+    locked: 0
   - name: Player
     uniqueID: 2973188399
+    locked: 0
+  - name: CannonBall
+    uniqueID: 972512361
     locked: 0
   - name: UI
     uniqueID: 1493292529

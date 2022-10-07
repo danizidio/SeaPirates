@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using StateMachine;
 
-public class GameBehaviour : GamePlayBehaviour
+public class GameBehaviour : MonoBehaviour
 {
 
  public delegate GamePlayStates _onNextGameState(GamePlayStates gameStates);
