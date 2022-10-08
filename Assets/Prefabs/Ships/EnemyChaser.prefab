@@ -141,9 +141,11 @@ MonoBehaviour:
   _shipType: 1
   _hullHitDamage: 5
   _explosion: {fileID: 94220684280587729, guid: 3f7a9095600ddb84e8f9f68ca02f46a4, type: 3}
-  _stopDistance: 0
+  _cannonball: {fileID: 0}
+  _distanceToAct: 7
+  _playerDistance: {x: 0, y: 0}
   _accelerationPower: 2
-  _steeringPower: 0.2
+  _steeringPower: 0.5
 --- !u!1 &898613127041932619
 GameObject:
   m_ObjectHideFlags: 0

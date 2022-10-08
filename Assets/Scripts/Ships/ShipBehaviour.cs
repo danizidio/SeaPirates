@@ -74,6 +74,18 @@ public class ShipBehaviour : MonoBehaviour, ICanBeDamaged
         _spawnedLifebar.GetComponent<LifeCanvas>().UpdateLifeBar(_currentLife, _maxLife);
     }
 
+    public void FullDamage()
+    {
+        _currentLife = 0;
+
+        _pieceHull.sprite = _hull[3];
+        _pieceLargeSail.sprite = _largeSail[3];
+        _pieceSmallSail.sprite = _smallSail[3];
+        _pieceFlag.sprite = _flag[1];
+
+        _spawnedLifebar.GetComponent<LifeCanvas>().UpdateLifeBar(_currentLife, _maxLife);
+    }
+
     public void DestroyCanvas()
     {
         Destroy(_spawnedLifebar);

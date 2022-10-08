@@ -15,14 +15,20 @@ public class EnemyShip : MonoBehaviour
 
     [SerializeField] int _hullHitDamage;
 
-    [SerializeField] GameObject _explosion;
+    [SerializeField] GameObject _explosion, _cannonball;
 
-    [SerializeField] float _stopDistance;
+    [SerializeField] float _distanceToAct;
+    [SerializeField] Vector2 _playerDistance;
+
     GameObject _target;
+
+    bool _onSight = false;
+    bool _canShoot = true;
 
     Rigidbody2D _rb;
 
     [SerializeField] float _accelerationPower;
+    float _plusAcceleration;
     [SerializeField] float _steeringPower;
     float _steeringAmount, _speed, _direction;
 
@@ -35,10 +41,14 @@ public class EnemyShip : MonoBehaviour
 
     private void FixedUpdate()
     {
-       if(_shipType == ShipType.CHASER)
+        if (_shipType == ShipType.CHASER)
         {
             ChasePlayer();
         }
+
+        _playerDistance = _target.transform.position - transform.position;
+
+        OnDistanceToAct();
     }
 
     void ChasePlayer()
@@ -48,8 +58,9 @@ public class EnemyShip : MonoBehaviour
 
         _steeringAmount = -localPosition.x;
 
-        _speed = -1 * _accelerationPower;
         _direction = Mathf.Sign(Vector2.Dot(_rb.velocity, _rb.GetRelativeVector(Vector2.up)));
+
+        _speed = -1 * (_accelerationPower + _plusAcceleration);
 
         _rb.rotation += _steeringAmount * _steeringPower * _rb.velocity.magnitude * _direction;
 
@@ -65,8 +76,62 @@ public class EnemyShip : MonoBehaviour
 
         GameBehaviour.OnEarningPoints?.Invoke();
 
-        StartCoroutine(DestroingGameObject());
+        StartCoroutine(DestroyingGameObject());
     }
+
+    void OnDistanceToAct()
+    {
+        if (_playerDistance.magnitude <= _distanceToAct)
+        {
+            switch (_shipType)
+            {
+                case ShipType.CHASER:
+                    {
+                        _plusAcceleration = 5;
+
+                        return;
+                    }
+                case ShipType.SHOOTER:
+                    {
+                        if(_canShoot)
+                        {
+                            StartCoroutine(Shots());
+                        }
+                       
+                        _plusAcceleration = -3;
+
+                        _onSight = true;
+
+                        return;
+                    }
+            }
+        }
+        else
+        {
+            switch (_shipType)
+            {
+                case ShipType.CHASER:
+                    {
+                        _plusAcceleration = 0;
+
+                        return;
+                    }
+                case ShipType.SHOOTER:
+                    {
+                        StopCoroutine(Shots());
+
+                        ChasePlayer();
+
+                        _plusAcceleration = 0;
+
+                        _onSight = false;
+
+                        return;
+                    }
+            }
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -79,11 +144,35 @@ public class EnemyShip : MonoBehaviour
             GameObject temp = Instantiate(_explosion, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
             temp.transform.localScale = new Vector2(3, 3);
 
-            StartCoroutine(DestroingGameObject());
+            GetComponent<ShipBehaviour>().FullDamage();
+
+            StartCoroutine(DestroyingGameObject());
         }
     }
 
-    IEnumerator DestroingGameObject()
+    public IEnumerator Shots()
+    {
+        _canShoot = false;
+
+        yield return new WaitForSeconds(3);
+
+
+        Vector3 difference = new Vector3(_target.transform.position.x,
+                                         _target.transform.position.y,
+                                         _target.transform.position.z) - transform.position;
+
+        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+        transform.localRotation = Quaternion.Euler(0f, 0f, rotationZ + 180);
+        
+        GameObject temp = Instantiate(_cannonball, new Vector2(transform.position.x - 1, transform.position.y), Quaternion.Euler(transform.position.x, transform.position.y, transform.rotation.z));
+
+        temp.GetComponent<Cannonball>().ShotDirection(difference);
+
+        _canShoot = true;
+    }
+
+    IEnumerator DestroyingGameObject()
     {
         yield return new WaitForSeconds(1);
 

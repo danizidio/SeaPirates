@@ -28,20 +28,20 @@ public class TripleCannonball : MonoBehaviour
     IEnumerator SpawnShots()
     {
         _instantiatedShots[0] = Instantiate(_cannonball, new Vector2(this.transform.position.x, this.transform.position.y),
-            Quaternion.Euler(transform.position.x, transform.position.y, transform.rotation.z));
+            Quaternion.Euler(this.transform.position.x, this.transform.position.y, this.transform.rotation.z));
 
-        _instantiatedShots[0].GetComponent<Rigidbody2D>().velocity = transform.right * Speed;
+        _instantiatedShots[0].GetComponent<Rigidbody2D>().velocity = this.transform.right * Speed;
 
         yield return new WaitForSeconds(.1f);
 
         _instantiatedShots[1] = Instantiate(_cannonball, new Vector2(this.transform.position.x, this.transform.position.y - .6f),
             Quaternion.Euler(transform.position.x, transform.position.y, transform.rotation.z));
 
-        _instantiatedShots[1].GetComponent<Rigidbody2D>().velocity = transform.right * Speed;
+        _instantiatedShots[1].GetComponent<Rigidbody2D>().velocity = this.transform.right * Speed;
 
         _instantiatedShots[2] = Instantiate(_cannonball, new Vector2(transform.position.x, transform.position.y + .6f),
             Quaternion.Euler(transform.position.x, transform.position.y, transform.rotation.z));
 
-        _instantiatedShots[2].GetComponent<Rigidbody2D>().velocity = transform.right * Speed;
+        _instantiatedShots[2].GetComponent<Rigidbody2D>().velocity = this.transform.right * Speed;
     }
 }

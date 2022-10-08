@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeCanvas: {fileID: 6428113464379472042, guid: 1e447d6b6c44bf5488c099165d7d8c43, type: 3}
-  _maxLife: 10
+  _maxLife: 5
   _pieceHull: {fileID: 3837339478392843780}
   _pieceLargeSail: {fileID: 3837339478020675217}
   _pieceSmallSail: {fileID: 8626809548116615773}
@@ -596,8 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c58660f3b7b63948b038af5173733e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accelerationPower: 3
-  _steeringPower: 2
+  _accelerationPower: 2
+  _steeringPower: 1
 --- !u!114 &1192215353423909309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,7 +611,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipType: 2
-  _stopDistance: 0
+  _hullHitDamage: 0
+  _explosion: {fileID: 0}
+  _cannonball: {fileID: 5617336944256752643, guid: 39c78b3f47fa8c0499c1e95c1cd5dbac, type: 3}
+  _distanceToAct: 10
+  _playerDistance: {x: 0, y: 0}
+  _accelerationPower: 0
+  _steeringPower: 0
 --- !u!1 &3837339479781749599
 GameObject:
   m_ObjectHideFlags: 0
