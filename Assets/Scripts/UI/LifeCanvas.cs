@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class LifeCanvas : MonoBehaviour
+{
+    public delegate void _onUpdateLifeBar(float currentLife, float maxLife);
+    public static _onUpdateLifeBar OnUpdateLifeBar;
+
+    Transform _shipToFollow;
+
+    [SerializeField] Image _lifebar;
+
+    private void Start()
+    {
+        this.GetComponent<Canvas>().worldCamera = FindObjectOfType<Camera>();
+
+        //OnUpdateLifeBar = UpdateLifeBar;
+    }
+
+    private void Update()
+    {
+        transform.position = new Vector2(_shipToFollow.position.x, _shipToFollow.position.y);
+    }
+
+    public void ShipToFollow(Transform ship)
+    {
+        _shipToFollow = ship;
+    }
+
+    public void UpdateLifeBar(float currentLife, float maxLife)
+    {
+        float value = currentLife / maxLife;
+
+        _lifebar.fillAmount = value;
+
+        if (currentLife < 0)
+        {
+            _lifebar.fillAmount = 0;
+        }
+    }
+}

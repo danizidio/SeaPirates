@@ -28,7 +28,15 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
-		_regressiveTimer_Minutes = NavigationData.nData.GameTime;    
+		try
+        {
+			_regressiveTimer_Minutes = NavigationData.nData.GameTime;
+		}
+		catch
+        {
+			_regressiveTimer_Minutes = 3;
+
+		}  
     }
 
     void Update()
