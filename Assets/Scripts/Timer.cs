@@ -70,8 +70,8 @@ public class Timer : MonoBehaviour
 			}
 			if(_regressiveTimer_Minutes <= 0)
             {
-				//CODIGO AQUI
-            }
+				GameBehaviour.OnNextGameState.Invoke(GamePlayStates.GAMEOVER);
+			}
 		}
     }
 }

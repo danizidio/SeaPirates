@@ -26,6 +26,6 @@ public class ShipMovement : MonoBehaviour
 
 		_rb.AddRelativeForce (Vector2.up * _speed);
 
-		_rb.AddRelativeForce ( - Vector2.right * _rb.velocity.magnitude * _steeringAmount / 2);		
+		_rb.AddRelativeForce (-Vector2.right * _rb.velocity.magnitude * _steeringAmount / 2);		
 	}
 }

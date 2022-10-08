@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 898613126622385989}
   - component: {fileID: 8335858062191491330}
   - component: {fileID: 898613126622385988}
-  - component: {fileID: 8335858062191491359}
+  - component: {fileID: 5105230021855628977}
   m_Layer: 0
   m_Name: EnemyChaser
   m_TagString: ENEMY
@@ -126,7 +126,7 @@ MonoBehaviour:
   _flag:
   - {fileID: 21300000, guid: 8e75fd6989e3a6a47aba3238cd0f37f3, type: 3}
   - {fileID: 21300000, guid: 661bc69008df25742ab50096e5425517, type: 3}
---- !u!114 &8335858062191491359
+--- !u!114 &5105230021855628977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,11 +135,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 898613126622385995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c58660f3b7b63948b038af5173733e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 981d117142d678b48b062cc48eba4ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accelerationPower: 3
-  _steeringPower: 2
+  _shipType: 1
+  _hullHitDamage: 5
+  _explosion: {fileID: 94220684280587729, guid: 3f7a9095600ddb84e8f9f68ca02f46a4, type: 3}
+  _stopDistance: 0
+  _accelerationPower: 2
+  _steeringPower: 0.2
 --- !u!1 &898613127041932619
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,9 @@ public class GameBehaviour : MonoBehaviour
     public delegate GamePlayStates _onNextGameState(GamePlayStates gameStates);
     public static _onNextGameState OnNextGameState;
 
+    public delegate int _onEarningPoints();
+    public static _onEarningPoints OnEarningPoints;
+
     GamePlayStates _gamePlayPreviousState;
     public GamePlayStates GamePlayPreviousState { get { return _gamePlayPreviousState; } }
     
@@ -17,6 +20,8 @@ public class GameBehaviour : MonoBehaviour
     GamePlayStates _gamePlayNextState;
     public GamePlayStates GamePlayNextState { get { return _gamePlayNextState; } }
 
+    [SerializeField] GameObject _pauseMenu, _gameOverMenu, _scoreTxt;
+
     [SerializeField] GameObject[] _playerShips;
     GameObject _currentPlayerShip;
 
@@ -24,9 +29,14 @@ public class GameBehaviour : MonoBehaviour
 
     GameObject _currentStage;
 
+    static int _playerScore;
+
     private void Start()
     {
         OnNextGameState(GamePlayStates.INITIALIZING);
+
+        OnEarningPoints = EarnPoints;
+
     }
 
     private void Update()
@@ -34,6 +44,11 @@ public class GameBehaviour : MonoBehaviour
         StateBehaviour(GamePlayCurrentState);
 
         UpdateState();
+
+        if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            EarnPoints();
+        }
     }
 
     void StateBehaviour(GamePlayStates state)
@@ -42,6 +57,11 @@ public class GameBehaviour : MonoBehaviour
         {
             case GamePlayStates.INITIALIZING:
                 {
+                    _pauseMenu.SetActive(false);
+                    _gameOverMenu.SetActive(false);
+
+                    _playerScore = 0;
+
                     if(_currentStage != null)
                     {
                         Destroy(_currentStage);
@@ -72,7 +92,6 @@ public class GameBehaviour : MonoBehaviour
                 }
             case GamePlayStates.START:
                 {
-
                     OnNextGameState.Invoke(GamePlayStates.GAMEPLAY);
 
                     break;
@@ -95,6 +114,10 @@ public class GameBehaviour : MonoBehaviour
                 }
             case GamePlayStates.GAMEOVER:
                 {
+                    Destroy(_currentPlayerShip);
+
+                    _gameOverMenu.SetActive(true);
+
                     Time.timeScale = 0;
 
                     break;
@@ -124,13 +147,29 @@ public class GameBehaviour : MonoBehaviour
         {
             if (GetCurrentGameState() != GamePlayStates.PAUSE)
             {
+                _pauseMenu.SetActive(true);
                 OnNextGameState?.Invoke(GamePlayStates.PAUSE);
             }
             else
             {
+                _pauseMenu.SetActive(false);
                 OnNextGameState?.Invoke(GamePlayStates.GAMEPLAY);
             }
         }
+    }
+
+    int EarnPoints()
+    {
+        _playerScore++;
+
+       _scoreTxt.GetComponent<TMPro.TMP_Text>().text = _playerScore.ToString();
+ 
+       return _playerScore;
+    }
+
+    public static int GetScore()
+    {
+        return _playerScore;
     }
 
     private void OnEnable()

@@ -8,27 +8,23 @@ public class Cannonball : MonoBehaviour
 
     [SerializeField] int _damage;
     [SerializeField] float _speed;
-
-    Rigidbody2D _rb;
-
-    void Start()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
-
-    void FixedUpdate()
-    {
-        _rb.velocity = Vector2.right * _speed;
-    }
+    public float Speed { get { return _speed; } }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        ICanBeDamaged _iCanBeDamaged = collision.GetComponentInParent<ICanBeDamaged>();
+
+        if (_iCanBeDamaged != null)
         {
-            collision.GetComponentInParent<ShipBehaviour>().TakingDamage(_damage);
+            _iCanBeDamaged.TakingDamage(_damage);
 
             Instantiate(_explosion, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
             Destroy(gameObject);
         }
+    }
+
+    public void ShotDirection(Vector2 direction)
+    {
+        GetComponent<Rigidbody2D>().velocity = direction * Speed;
     }
 }

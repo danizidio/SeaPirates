@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipBehaviour : MonoBehaviour
+public class ShipBehaviour : MonoBehaviour, ICanBeDamaged
 {
     [SerializeField] GameObject _lifeCanvas;
+    GameObject _spawnedLifebar;
     [Space(10)]
 
     [SerializeField] float _maxLife;
@@ -27,14 +28,14 @@ public class ShipBehaviour : MonoBehaviour
         _pieceSmallSail.sprite = _smallSail[0];
         _pieceFlag.sprite = _flag[0];
 
-       GameObject temp = Instantiate(_lifeCanvas, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
-       temp.GetComponent<LifeCanvas>().ShipToFollow(this.transform);
+        _spawnedLifebar = Instantiate(_lifeCanvas, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+        _spawnedLifebar.GetComponent<LifeCanvas>().ShipToFollow(this.transform);
     }
     
     public void TakingDamage(float damageTaken)
     {
         _currentLife -= damageTaken;
-        
+
         float _percentageLife = _currentLife/_maxLife;
         
         if (_percentageLife >= .31f && _percentageLife <= .7f)
@@ -59,9 +60,23 @@ public class ShipBehaviour : MonoBehaviour
             _pieceLargeSail.sprite = _largeSail[3];
             _pieceSmallSail.sprite = _smallSail[3];
             _pieceFlag.sprite = _flag[1];
+
+            try
+            {
+                GetComponent<PlayerShip>().ShipWrecked();
+            }
+            catch
+            {
+                GetComponent<EnemyShip>().ShipWrecked();
+            }
         }
 
-        _lifeCanvas.GetComponent<LifeCanvas>().UpdateLifeBar(_currentLife, _maxLife);
+        _spawnedLifebar.GetComponent<LifeCanvas>().UpdateLifeBar(_currentLife, _maxLife);
+    }
+
+    public void DestroyCanvas()
+    {
+        Destroy(_spawnedLifebar);
     }
 }
 

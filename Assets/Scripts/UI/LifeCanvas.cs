@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class LifeCanvas : MonoBehaviour
 {
-    public delegate void _onUpdateLifeBar(float currentLife, float maxLife);
-    public static _onUpdateLifeBar OnUpdateLifeBar;
-
     Transform _shipToFollow;
 
     [SerializeField] Image _lifebar;
@@ -15,8 +12,6 @@ public class LifeCanvas : MonoBehaviour
     private void Start()
     {
         this.GetComponent<Canvas>().worldCamera = FindObjectOfType<Camera>();
-
-        //OnUpdateLifeBar = UpdateLifeBar;
     }
 
     private void Update()
