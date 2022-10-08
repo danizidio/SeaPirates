@@ -7,49 +7,48 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
 
-  [SerializeField] TMP_Text _txt;
-    
-	float _progressiveTimer;
+	[SerializeField] TMP_Text _txt;
+
 	float _regressiveTimer;
 
-	 bool _isTicTimer;
-	public bool IsTicTimer { get { return _isTicTimer; } }
+	[SerializeField] bool _isTicTimer;
+	public bool IsTicTimer { get { return _isTicTimer; } set {_isTicTimer = value ; } }
 
-	 bool _itsOver;
+	bool _itsOver;
 
-	[SerializeField] float _progressiveTimer_Microseconds;
-	[Space(10)]
+	float _progressiveTimer_Microseconds;
 
-	[SerializeField] float _regressiveTimer_Minutes;
+	float _regressiveTimer_Minutes;
 	float _regressiveTimer_Seconds;
 	float _regressiveTimer_Miliseconds;
 	float _regressiveTimer_Microseconds;
 
 
-    private void Start()
-    {
+	private void Start()
+	{
 		try
-        {
+		{
 			_regressiveTimer_Minutes = NavigationData.nData.GameTime;
 		}
 		catch
-        {
-			_regressiveTimer_Minutes = 3;
+		{
+			_regressiveTimer_Minutes = 1.5f;
 
-		}  
-    }
+		}
+	}
 
-    void Update()
+	void Update()
 	{
-		RegressiveTimer();
-    
 		_txt.text = string.Format("{0:00}:{1:00}:{2:00}", _regressiveTimer_Minutes, _regressiveTimer_Seconds, _regressiveTimer_Miliseconds);
+
+		RegressiveTimer();
+
 	}
 
 	void RegressiveTimer()
-    {
-		if(IsTicTimer)
-        {
+	{
+		if (IsTicTimer)
+		{
 			_regressiveTimer -= Time.deltaTime;
 			_regressiveTimer_Microseconds = Mathf.RoundToInt(_regressiveTimer * 600);
 
@@ -68,10 +67,10 @@ public class Timer : MonoBehaviour
 				_regressiveTimer_Seconds = 59;
 				_regressiveTimer_Minutes--;
 			}
-			if(_regressiveTimer_Minutes <= 0)
-            {
+			if (_regressiveTimer_Minutes <= 0)
+			{
 				GameBehaviour.OnNextGameState.Invoke(GamePlayStates.GAMEOVER);
 			}
 		}
-    }
+	}
 }

@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        FindSpawnPlaces();
+        StartCoroutine(FindSpawnPlaces());
 
         try
         {
@@ -58,15 +58,39 @@ public class EnemySpawner : MonoBehaviour
         return _timer <= 0;
     }
 
-    void FindSpawnPlaces()
+    IEnumerator FindSpawnPlaces()
     {
+        yield return new WaitForSeconds(1);
+
         _spawnPlaces = GameObject.FindGameObjectsWithTag("SPAWNPLACE");
+
+        if(_spawnPlaces != null)
+        {
+            StopCoroutine(FindSpawnPlaces());
+        }
     }
 
     void SpawnEnemy()
     {
-        Transform temp = _spawnPlaces[UnityEngine.Random.Range(0, _spawnPlaces.Length)].transform;
+        if(_spawnPlaces != null)
+        {
+            GameObject temp = _spawnPlaces[UnityEngine.Random.Range(0, _spawnPlaces.Length)];
 
-        Instantiate(_enemyShips[UnityEngine.Random.Range(0, _enemyShips.Length)], new Vector2(temp.position.x, temp.position.y), Quaternion.identity);
+            print(temp.name);
+
+            Instantiate(_enemyShips[UnityEngine.Random.Range(0, _enemyShips.Length)], new Vector2(temp.transform.position.x, temp.transform.position.y), Quaternion.identity);
+
+            temp = null;
+        }
+
+        try
+        {
+            _timer = NavigationData.nData.SpawnTime;
+        }
+        catch
+        {
+            _timer = 2;
+        }
+
     }
 }

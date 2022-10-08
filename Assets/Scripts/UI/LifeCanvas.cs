@@ -16,7 +16,14 @@ public class LifeCanvas : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector2(_shipToFollow.position.x, _shipToFollow.position.y);
+        if(_shipToFollow != null)
+        {
+            transform.position = new Vector2(_shipToFollow.position.x, _shipToFollow.position.y);
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     public void ShipToFollow(Transform ship)

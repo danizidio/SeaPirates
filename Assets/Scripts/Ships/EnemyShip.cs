@@ -22,7 +22,6 @@ public class EnemyShip : MonoBehaviour
 
     GameObject _target;
 
-    bool _onSight = false;
     bool _canShoot = true;
 
     Rigidbody2D _rb;
@@ -100,8 +99,6 @@ public class EnemyShip : MonoBehaviour
                        
                         _plusAcceleration = -3;
 
-                        _onSight = true;
-
                         return;
                     }
             }
@@ -123,8 +120,6 @@ public class EnemyShip : MonoBehaviour
                         ChasePlayer();
 
                         _plusAcceleration = 0;
-
-                        _onSight = false;
 
                         return;
                     }
