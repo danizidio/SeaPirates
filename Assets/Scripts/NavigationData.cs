@@ -14,6 +14,8 @@ public class NavigationData : MonoBehaviour
     public float GameTime { get { return optionsValues.GameSessionTime; } }
     public float SpawnTime { get { return optionsValues.EnemySpawnTime; } }
 
+    static int _highScore;
+
     GameObject[] Datas;
 
     private void Awake()
@@ -32,6 +34,8 @@ public class NavigationData : MonoBehaviour
             Destroy(Datas[1]);
         }
 
+        _highScore = optionsValues.HighScore;
+
         Application.targetFrameRate = _targetFrameRate;
     }
 
@@ -46,5 +50,17 @@ public class NavigationData : MonoBehaviour
         _spawnTime = v;
 
         optionsValues.EnemySpawnTime = _spawnTime;
+    }
+
+    public void SetHighScore(int value)
+    {
+        _highScore = value;
+
+        optionsValues.HighScore = _highScore;
+    }
+
+    public static int GetHighScore()
+    {
+        return _highScore;
     }
 }
