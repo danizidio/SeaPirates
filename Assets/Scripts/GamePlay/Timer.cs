@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-
 	[SerializeField] TMP_Text _txt;
 
 	float _regressiveTimer;
@@ -32,21 +31,20 @@ public class Timer : MonoBehaviour
 		}
 		catch
 		{
-			_regressiveTimer_Minutes = 1.5f;
+			_regressiveTimer_Minutes = 1;
 
 		}
 	}
 
 	void Update()
 	{
-		_txt.text = string.Format("{0:00}:{1:00}:{2:00}", _regressiveTimer_Minutes, _regressiveTimer_Seconds, _regressiveTimer_Miliseconds);
-
 		RegressiveTimer();
-
 	}
 
 	void RegressiveTimer()
 	{
+
+
 		if (IsTicTimer)
 		{
 			_regressiveTimer -= Time.deltaTime;
@@ -67,10 +65,18 @@ public class Timer : MonoBehaviour
 				_regressiveTimer_Seconds = 59;
 				_regressiveTimer_Minutes--;
 			}
-			if (_regressiveTimer_Minutes <= 0)
+			if (_regressiveTimer_Minutes < 0)
 			{
+				_txt.text = string.Format("{0:00}:{1:00}:{2:00}", 0, 0, 0);
+
 				GameBehaviour.OnNextGameState.Invoke(GamePlayStates.GAMEOVER);
 			}
+			else
+            {
+				_txt.text = string.Format("{0:00}:{1:00}:{2:00}", _regressiveTimer_Minutes, _regressiveTimer_Seconds, _regressiveTimer_Miliseconds);
+			}
 		}
+
+		
 	}
 }

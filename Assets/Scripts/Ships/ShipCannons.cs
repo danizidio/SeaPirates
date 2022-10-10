@@ -60,7 +60,7 @@ public class ShipCannons : MonoBehaviour
 
         _canShoot = true;
 
-        StopCoroutine("CannonShot");
+        StopCoroutine("TripleCannonShot");
     }
 
 }

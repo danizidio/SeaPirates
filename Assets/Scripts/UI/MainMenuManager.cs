@@ -9,6 +9,8 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
+
         _spawnTime.GetComponent<Slider>().value = NavigationData.nData.SpawnTime;
         _gameTime.GetComponent<Slider>().value = NavigationData.nData.GameTime;
     }

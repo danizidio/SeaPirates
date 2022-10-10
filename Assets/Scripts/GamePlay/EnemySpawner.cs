@@ -60,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator FindSpawnPlaces()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.5f);
 
         _spawnPlaces = GameObject.FindGameObjectsWithTag("SPAWNPLACE");
 
@@ -75,8 +75,6 @@ public class EnemySpawner : MonoBehaviour
         if(_spawnPlaces != null)
         {
             GameObject temp = _spawnPlaces[UnityEngine.Random.Range(0, _spawnPlaces.Length)];
-
-            print(temp.name);
 
             Instantiate(_enemyShips[UnityEngine.Random.Range(0, _enemyShips.Length)], new Vector2(temp.transform.position.x, temp.transform.position.y), Quaternion.identity);
 

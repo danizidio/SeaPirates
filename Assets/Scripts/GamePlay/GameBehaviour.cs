@@ -31,11 +31,15 @@ public class GameBehaviour : MonoBehaviour
 
     static int _playerScore;
 
+    Timer _timer;
+
     private void Start()
     {
         OnNextGameState(GamePlayStates.INITIALIZING);
 
         OnEarningPoints = EarnPoints;
+
+        _timer = FindObjectOfType<Timer>();
 
     }
 
@@ -44,11 +48,6 @@ public class GameBehaviour : MonoBehaviour
         StateBehaviour(GamePlayCurrentState);
 
         UpdateState();
-
-        if(Input.GetKeyDown(KeyCode.Backspace))
-        {
-            EarnPoints();
-        }
     }
 
     void StateBehaviour(GamePlayStates state)
@@ -84,14 +83,14 @@ public class GameBehaviour : MonoBehaviour
                         _currentPlayerShip = Instantiate(_playerShips[Random.Range(0, _playerShips.Length)], new Vector2(0,0), Quaternion.identity);
                     }
 
-                    //CameraBehaviour.OnSearchingPlayer?.Invoke();
-
                     OnNextGameState.Invoke(GamePlayStates.START);
 
                     break;
                 }
             case GamePlayStates.START:
                 {
+                    _timer.IsTicTimer = true;
+
                     OnNextGameState.Invoke(GamePlayStates.GAMEPLAY);
 
                     break;
@@ -114,6 +113,8 @@ public class GameBehaviour : MonoBehaviour
                 }
             case GamePlayStates.GAMEOVER:
                 {
+                    _timer.IsTicTimer = false;
+
                     Destroy(_currentPlayerShip);
 
                     _gameOverMenu.SetActive(true);
@@ -147,14 +148,36 @@ public class GameBehaviour : MonoBehaviour
         {
             if (GetCurrentGameState() != GamePlayStates.PAUSE)
             {
+                _timer.IsTicTimer = false;
+
                 _pauseMenu.SetActive(true);
                 OnNextGameState?.Invoke(GamePlayStates.PAUSE);
             }
             else
             {
+                _timer.IsTicTimer = false;
+
                 _pauseMenu.SetActive(false);
                 OnNextGameState?.Invoke(GamePlayStates.GAMEPLAY);
             }
+        }
+    }
+
+    public void PauseButton()
+    {
+        if (GetCurrentGameState() != GamePlayStates.PAUSE)
+        {
+            _timer.IsTicTimer = false;
+
+            _pauseMenu.SetActive(true);
+            OnNextGameState?.Invoke(GamePlayStates.PAUSE);
+        }
+        else
+        {
+            _timer.IsTicTimer = false;
+
+            _pauseMenu.SetActive(false);
+            OnNextGameState?.Invoke(GamePlayStates.GAMEPLAY);
         }
     }
 

@@ -7,6 +7,9 @@ TagManager:
   - NAVIGATION_DATA
   - ENEMY
   - SPAWNPLACE
+  - TIMER
+  - GLOBAL_LIGHT
+  - STRUCTURE
   layers:
   - Default
   - TransparentFX

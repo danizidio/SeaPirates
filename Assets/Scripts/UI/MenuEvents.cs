@@ -9,9 +9,4 @@ public class MenuEvents : MonoBehaviour
     {
         this.GetComponent<Animator>().SetTrigger("OnMenu");
     }
-
-    public void ExitMenu()
-    {
-
-    }
 }

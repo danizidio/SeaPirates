@@ -78,6 +78,8 @@ public class ShipBehaviour : MonoBehaviour, ICanBeDamaged
     {
         _currentLife = 0;
 
+        GetComponentInChildren<PolygonCollider2D>().enabled = false;
+
         _pieceHull.sprite = _hull[3];
         _pieceLargeSail.sprite = _largeSail[3];
         _pieceSmallSail.sprite = _smallSail[3];

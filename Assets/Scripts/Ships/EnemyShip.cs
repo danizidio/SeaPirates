@@ -130,18 +130,21 @@ public class EnemyShip : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        ICanBeDamaged _iCanBeDamaged = collision.collider.GetComponentInParent<ICanBeDamaged>();
-
-        if (_iCanBeDamaged != null && _shipType == ShipType.CHASER)
+        if (collision.collider.CompareTag("Player"))
         {
-            _iCanBeDamaged.TakingDamage(_hullHitDamage);
+            if (_shipType == ShipType.CHASER)
+            {
+                ICanBeDamaged _iCanBeDamaged = collision.collider.GetComponentInParent<ICanBeDamaged>();
 
-            GameObject temp = Instantiate(_explosion, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
-            temp.transform.localScale = new Vector2(3, 3);
+                _iCanBeDamaged.TakingDamage(_hullHitDamage);
 
-            GetComponent<ShipBehaviour>().FullDamage();
+                GameObject temp = Instantiate(_explosion, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+                temp.transform.localScale = new Vector2(3, 3);
 
-            StartCoroutine(DestroyingGameObject());
+                GetComponent<ShipBehaviour>().FullDamage();
+
+                StartCoroutine(DestroyingGameObject());
+            }
         }
     }
 

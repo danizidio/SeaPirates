@@ -434,8 +434,8 @@ GameObject:
   - component: {fileID: 3837339478617646284}
   - component: {fileID: 3837339478617646287}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: Player
+  m_Name: Ship
+  m_TagString: ENEMY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -502,7 +502,6 @@ GameObject:
   - component: {fileID: 3837339479003410124}
   - component: {fileID: 5374657694747574411}
   - component: {fileID: 3837339479003410125}
-  - component: {fileID: 5374657694747574422}
   - component: {fileID: 1192215353423909309}
   m_Layer: 0
   m_Name: EnemyShooter
@@ -519,7 +518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3837339479003410114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.07, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -584,20 +583,6 @@ MonoBehaviour:
   _flag:
   - {fileID: 21300000, guid: 661bc69008df25742ab50096e5425517, type: 3}
   - {fileID: 21300000, guid: 661bc69008df25742ab50096e5425517, type: 3}
---- !u!114 &5374657694747574422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3837339479003410114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c58660f3b7b63948b038af5173733e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _accelerationPower: 2
-  _steeringPower: 1
 --- !u!114 &1192215353423909309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,8 +601,8 @@ MonoBehaviour:
   _cannonball: {fileID: 5617336944256752643, guid: 39c78b3f47fa8c0499c1e95c1cd5dbac, type: 3}
   _distanceToAct: 10
   _playerDistance: {x: 0, y: 0}
-  _accelerationPower: 0
-  _steeringPower: 0
+  _accelerationPower: 2
+  _steeringPower: 0.2
 --- !u!1 &3837339479781749599
 GameObject:
   m_ObjectHideFlags: 0
