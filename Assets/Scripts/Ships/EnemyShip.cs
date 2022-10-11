@@ -70,6 +70,8 @@ public class EnemyShip : MonoBehaviour
 
     public void ShipWrecked()
     {
+        GetComponent<Animator>().SetTrigger("Sinking");
+
         _accelerationPower = 0;
         _steeringPower = 0;
 

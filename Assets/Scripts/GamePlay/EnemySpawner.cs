@@ -75,10 +75,14 @@ public class EnemySpawner : MonoBehaviour
         if(_spawnPlaces != null)
         {
             GameObject temp = _spawnPlaces[UnityEngine.Random.Range(0, _spawnPlaces.Length)];
+            string tempName = temp.name;
 
-            Instantiate(_enemyShips[UnityEngine.Random.Range(0, _enemyShips.Length)], new Vector2(temp.transform.position.x, temp.transform.position.y), Quaternion.identity);
+            if(temp.name == tempName)
+            {
+               temp = _spawnPlaces[UnityEngine.Random.Range(0, _spawnPlaces.Length)];
+            }
 
-            temp = null;
+            Instantiate(_enemyShips[UnityEngine.Random.Range(0, _enemyShips.Length)], temp.transform.position, temp.transform.localRotation);
         }
 
         try
