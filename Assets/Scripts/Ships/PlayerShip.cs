@@ -6,6 +6,8 @@ public class PlayerShip : MonoBehaviour
 {
     public void ShipWrecked()
     {
+        GetComponent<Animator>().SetTrigger("Sinking");
+
         GameBehaviour.OnNextGameState.Invoke(GamePlayStates.GAMEOVER);
     }
 }
