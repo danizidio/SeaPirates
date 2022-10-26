@@ -43,8 +43,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 0
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -2204,8 +2204,8 @@ TextureImporter:
       tiles_sheet_10: -1311142044
       tiles_sheet_14: -656002871
       tiles_sheet_26: -730911811
-      tiles_sheet_19: 523497047
       tiles_sheet_76: -1120409091
+      tiles_sheet_19: 523497047
       tiles_sheet_67: -1551070888
       tiles_sheet_5: 506546640
       tiles_sheet_75: 1014013409

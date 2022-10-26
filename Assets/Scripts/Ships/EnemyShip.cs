@@ -52,10 +52,12 @@ public class EnemyShip : MonoBehaviour
 
     void ChasePlayer()
     {
-        Vector3 localPosition = _target.transform.position - transform.position;
+        Vector3 localPosition = _target.transform.position - transform.localPosition;
         localPosition = localPosition.normalized;
 
-        _steeringAmount = -localPosition.x;
+        _steeringAmount = localPosition.x * localPosition.y;
+
+        print(_steeringAmount);
 
         _direction = Mathf.Sign(Vector2.Dot(_rb.velocity, _rb.GetRelativeVector(Vector2.up)));
 
@@ -163,7 +165,7 @@ public class EnemyShip : MonoBehaviour
 
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-        transform.localRotation = Quaternion.Euler(0f, 0f, rotationZ + 180);
+        //transform.localRotation = Quaternion.Euler(0f, 0f, rotationZ + 180);
         
         GameObject temp = Instantiate(_cannonball, new Vector2(transform.position.x - 1, transform.position.y), Quaternion.Euler(transform.position.x, transform.position.y, transform.rotation.z));
 
