@@ -75,6 +75,7 @@ public class EnemySpawner : MonoBehaviour
         if(_spawnPlaces != null)
         {
             GameObject temp = _spawnPlaces[UnityEngine.Random.Range(0, _spawnPlaces.Length)];
+
             string tempName = temp.name;
 
             if(temp.name == tempName)

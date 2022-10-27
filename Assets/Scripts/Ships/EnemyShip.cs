@@ -19,7 +19,7 @@ public class EnemyShip : MonoBehaviour
 
     [SerializeField] float _distanceToAct;
     [SerializeField] Vector2 _playerDistance;
-
+    [SerializeField] Vector3 localPosition;
     GameObject _target;
 
     bool _canShoot = true;
@@ -52,22 +52,20 @@ public class EnemyShip : MonoBehaviour
 
     void ChasePlayer()
     {
-        Vector3 localPosition = _target.transform.position - transform.localPosition;
+        localPosition = _target.transform.position - transform.position;
         localPosition = localPosition.normalized;
 
         _steeringAmount = localPosition.x * localPosition.y;
 
-        print(_steeringAmount);
-
         _direction = Mathf.Sign(Vector2.Dot(_rb.velocity, _rb.GetRelativeVector(Vector2.up)));
 
-        _speed = -1 * (_accelerationPower + _plusAcceleration);
+        _speed = -1 *   (_accelerationPower + _plusAcceleration);
 
         _rb.rotation += _steeringAmount * _steeringPower * _rb.velocity.magnitude * _direction;
 
         _rb.AddRelativeForce(Vector2.up * _speed);
 
-        _rb.AddRelativeForce(-Vector2.right * _rb.velocity.magnitude * _steeringAmount / 2);
+        _rb.AddRelativeForce(Vector2.right * _rb.velocity.magnitude * _steeringAmount / 2);
     }
 
     public void ShipWrecked()

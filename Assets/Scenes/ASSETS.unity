@@ -1193,7 +1193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3837339479003410114, guid: 93935d4a14a919345b3c1c4e63dcb3e0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3837339479003410124, guid: 93935d4a14a919345b3c1c4e63dcb3e0, type: 3}
       propertyPath: m_RootOrder
@@ -2404,14 +2404,6 @@ PrefabInstance:
     - target: {fileID: 898613126622385995, guid: 96cfd59ec0041e047914b01442e6b477, type: 3}
       propertyPath: m_Name
       value: EnemyChaser
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105230021855628977, guid: 96cfd59ec0041e047914b01442e6b477, type: 3}
-      propertyPath: _steeringPower
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5105230021855628977, guid: 96cfd59ec0041e047914b01442e6b477, type: 3}
-      propertyPath: _accelerationPower
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96cfd59ec0041e047914b01442e6b477, type: 3}
