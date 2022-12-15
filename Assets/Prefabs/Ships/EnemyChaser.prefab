@@ -147,8 +147,9 @@ MonoBehaviour:
   _cannonball: {fileID: 0}
   _distanceToAct: 7
   _playerDistance: {x: 0, y: 0}
+  localPosition: {x: 0, y: 0, z: 0}
   _accelerationPower: 2
-  _steeringPower: 0.5
+  _steeringPower: 1
 --- !u!95 &5589860904331901353
 Animator:
   serializedVersion: 4
@@ -769,7 +770,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6650447097922775649}
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0.235, y: 0.17, z: 0}
+  m_LocalPosition: {x: 0.3, y: 0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -909,7 +910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8283532644329345239}
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: -0.292, y: 0.17, z: 0}
+  m_LocalPosition: {x: -0.28, y: 0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

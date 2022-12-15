@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sail
-  m_Shader: {fileID: 4800000, guid: 3e886cab49c583646a6489186c024f9a, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 56de1dd463dc67740952d0ae9cd9af80, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _DISTORTIONENABLED_ON
@@ -74,6 +74,8 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
+    - _BottomFixed: 1
+    - _BottomTopFixed: 1
     - _ColorOverlayEnabled: 0
     - _ColorOverlayIntensity: 0.5
     - _ColorToMultiplyEnabled: 0
@@ -122,7 +124,7 @@ Material:
     - _Outline_Thickness_U: 0.05
     - _PixelDensity: 10
     - _PixelateEnabled: 0
-    - _Scale: 50
+    - _Scale: 2.11
     - _SrcBlend: 3
     - _VibrationEnabled: 0
     - _VibrationIntensity: 0
@@ -135,6 +137,7 @@ Material:
     - _ColorOverlayColor: {r: 1, g: 1, b: 1, a: 1}
     - _ColorToMultiply: {r: 1, g: 1, b: 1, a: 1}
     - _Color_1: {r: 0, g: 5.17132, b: 5.3403134, a: 0}
+    - _Direction: {r: -0.46, g: 0.3, b: 0, a: 0}
     - _DissolveColor: {r: 1, g: 1, b: 1, a: 1}
     - _DropShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}

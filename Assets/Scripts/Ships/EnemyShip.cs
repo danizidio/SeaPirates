@@ -19,7 +19,7 @@ public class EnemyShip : MonoBehaviour
 
     [SerializeField] float _distanceToAct;
     [SerializeField] Vector2 _playerDistance;
-
+    [SerializeField] Vector3 localPosition;
     GameObject _target;
 
     bool _canShoot = true;
@@ -52,20 +52,20 @@ public class EnemyShip : MonoBehaviour
 
     void ChasePlayer()
     {
-        Vector3 localPosition = _target.transform.position - transform.position;
+        localPosition = _target.transform.position - transform.position;
         localPosition = localPosition.normalized;
 
-        _steeringAmount = -localPosition.x;
+        _steeringAmount = localPosition.x * localPosition.y;
 
         _direction = Mathf.Sign(Vector2.Dot(_rb.velocity, _rb.GetRelativeVector(Vector2.up)));
 
-        _speed = -1 * (_accelerationPower + _plusAcceleration);
+        _speed = -1 *   (_accelerationPower + _plusAcceleration);
 
         _rb.rotation += _steeringAmount * _steeringPower * _rb.velocity.magnitude * _direction;
 
         _rb.AddRelativeForce(Vector2.up * _speed);
 
-        _rb.AddRelativeForce(-Vector2.right * _rb.velocity.magnitude * _steeringAmount / 2);
+        _rb.AddRelativeForce(Vector2.right * _rb.velocity.magnitude * _steeringAmount / 2);
     }
 
     public void ShipWrecked()
@@ -163,7 +163,7 @@ public class EnemyShip : MonoBehaviour
 
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-        transform.localRotation = Quaternion.Euler(0f, 0f, rotationZ + 180);
+        //transform.localRotation = Quaternion.Euler(0f, 0f, rotationZ + 180);
         
         GameObject temp = Instantiate(_cannonball, new Vector2(transform.position.x - 1, transform.position.y), Quaternion.Euler(transform.position.x, transform.position.y, transform.rotation.z));
 
